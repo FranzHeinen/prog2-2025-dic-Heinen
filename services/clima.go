@@ -4,6 +4,7 @@ import (
 	"errors"
 	"math"
 	"prog2-2025-dic-Heinen/dto"
+	"prog2-2025-dic-Heinen/services"
 	"time"
 )
 
@@ -77,11 +78,22 @@ func (service *ClimaService) CalcularProyeccion(datos dto.ProyeccionRequest) ([]
 	return resultado, nil
 }
 
-//func (service *ClimaService) ReporteOperaciones(datos dto.ReporteRequest, parametros dto.ProyeccionRequest) ([]dto.ReporteResponse, error) {
+func (service *ClimaService) ReporteOperaciones(datos dto.ReporteRequest, parametros dto.ProyeccionRequest) ([]dto.ReporteResponse, error) {
 
-//var fechaDesde = datos.FechaDesde
-//var fechaHasta = datos.FechaHasta
-//}
+	var res []dto.ReporteResponse
+	var fechaDesde = datos.FechaDesde
+	var fechaHasta = datos.FechaHasta
+
+	resultado := services.CalcularProyeccion(parametros)
+
+	fecha := resultado.Fecha
+
+	if fechaDesde > fecha && fechaHasta < fecha {
+
+	}
+
+	return res{}, nil
+}
 
 func (service *ClimaService) RegistroEstaciones(datos dto.RegistroRequest) (dto.RegistroResponse, error) {
 	if datos.Nombre != "" && datos.Latitud >= -90 && datos.Latitud <= 90 && datos.Longitud >= 180 && datos.Longitud <= 180 && datos.Altitud > 0 {
