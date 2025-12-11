@@ -3,8 +3,8 @@ package services
 import (
 	"errors"
 	"math"
+	"prog2-2025--Heinen/services"
 	"prog2-2025-dic-Heinen/dto"
-	"prog2-2025-dic-Heinen/services"
 	"time"
 )
 
@@ -80,9 +80,9 @@ func (service *ClimaService) CalcularProyeccion(datos dto.ProyeccionRequest) ([]
 
 func (service *ClimaService) ReporteOperaciones(datos dto.ReporteRequest, parametros dto.ProyeccionRequest) ([]dto.ReporteResponse, error) {
 
-	var res []dto.ReporteResponse
 	var fechaDesde = datos.FechaDesde
 	var fechaHasta = datos.FechaHasta
+	var listado []dto.ReporteResponse
 
 	resultado := services.CalcularProyeccion(parametros)
 
@@ -92,7 +92,7 @@ func (service *ClimaService) ReporteOperaciones(datos dto.ReporteRequest, parame
 
 	}
 
-	return res{}, nil
+	return listado, nil
 }
 
 func (service *ClimaService) RegistroEstaciones(datos dto.RegistroRequest) (dto.RegistroResponse, error) {
