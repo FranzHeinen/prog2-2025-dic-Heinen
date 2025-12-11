@@ -1,5 +1,7 @@
 package dto
 
+import "time"
+
 type TemperaturasRequest struct {
 	Temperaturas []float64 `json:"temperaturas"`
 }
@@ -12,25 +14,27 @@ type TemperaturasResponse struct {
 }
 
 type ProyeccionRequest struct {
-	TemperaturaActual float64 `json:"temperatura_actual"`
-	TasaAnual         float64 `json:"tasa_anual"`
-	Anios             int     `json:"anios"`
+	TemperaturaActual float64   `json:"temperatura_actual"`
+	TasaAnual         float64   `json:"tasa_anual"`
+	Anios             int       `json:"anios"`
+	Fecha             time.Time `json:"fecha"`
 }
 
 type ProyeccionResponse struct {
-	Anio        int     `json:"anio"`
-	Temperatura float64 `json:"temperatura"`
+	Anio        int       `json:"anio"`
+	Temperatura float64   `json:"temperatura"`
+	Fecha       time.Time `json:"fecha"`
 }
 
 type ReporteRequest struct {
-	FechaDesde date `json:"fecha_desde"`
-	FechaHasta date `json:"fecha_hasta"`
+	FechaDesde time.Time `json:"fecha_desde"`
+	FechaHasta time.Time `json:"fecha_hasta"`
 }
 
 type ReporteResponse struct {
-	Tipo      float64 `json:"tipo"`
-	Fecha     date    `json:"fecha"`
-	Resultado float64 `json:"resultado"`
+	Tipo      float64   `json:"tipo"`
+	Fecha     time.Time `json:"fecha"`
+	Resultado float64   `json:"resultado"`
 }
 
 type RegistroRequest struct {
@@ -46,10 +50,10 @@ type RegistroResponseFalla struct {
 }
 
 type RegistroResponse struct {
-	Id            string  `json:"id"`
-	Nombre        string  `json:"nombre"`
-	Latitud       float64 `json:"latitud"`
-	Longitud      float64 `json:"longitud"`
-	Altitud       float64 `json:"altitud"`
-	FechaCreacion `json:"fecha_creacion"`
+	Id            string    `json:"id"`
+	Nombre        string    `json:"nombre"`
+	Latitud       float64   `json:"latitud"`
+	Longitud      float64   `json:"longitud"`
+	Altitud       float64   `json:"altitud"`
+	FechaCreacion time.Time `json:"fecha_creacion"`
 }
